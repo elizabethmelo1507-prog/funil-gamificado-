@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Operação: Caixa Preta do Seu Cérebro</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;700;900&family=Rajdhani:wght@300;400;500;600;700&family=Share+Tech+Mono&display=swap" rel="stylesheet">
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            fontFamily: {
+              orbitron: ['"Orbitron"', 'sans-serif'],
+              rajdhani: ['"Rajdhani"', 'sans-serif'],
+              mono: ['"Share Tech Mono"', 'monospace'],
+            },
+            colors: {
+              cyber: {
+                black: '#020617',
+                dark: '#0f172a',
+                cyan: '#06b6d4',
+                green: '#10b981',
+                purple: '#8b5cf6',
+                danger: '#ef4444',
+                gold: '#fbbf24',
+                dim: 'rgba(6, 182, 212, 0.1)'
+              }
+            },
+            backgroundImage: {
+              'noise': "url('https://www.transparenttextures.com/patterns/stardust.png')",
+              'grid': "linear-gradient(to right, #1e293b 1px, transparent 1px), linear-gradient(to bottom, #1e293b 1px, transparent 1px)",
+            },
+            animation: {
+              'pulse-fast': 'pulse 1s cubic-bezier(0.4, 0, 0.6, 1) infinite',
+              'glitch': 'glitch 1s linear infinite',
+              'scanline': 'scanline 8s linear infinite',
+              'float': 'float 3s ease-in-out infinite',
+              'stamp': 'stamp 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94) both',
+              'grain': 'grain 8s steps(10) infinite',
+            },
+            keyframes: {
+              glitch: {
+                '2%, 64%': { transform: 'translate(2px,0) skew(0deg)' },
+                '4%, 60%': { transform: 'translate(-2px,0) skew(0deg)' },
+                '62%': { transform: 'translate(0,0) skew(5deg)' },
+              },
+              scanline: {
+                '0%': { transform: 'translateY(-100%)' },
+                '100%': { transform: 'translateY(100%)' }
+              },
+              float: {
+                '0%, 100%': { transform: 'translateY(0)' },
+                '50%': { transform: 'translateY(-10px)' },
+              },
+              stamp: {
+                '0%': { opacity: '0', transform: 'scale(3) rotate(-10deg)' },
+                '100%': { opacity: '1', transform: 'scale(1) rotate(-10deg)' }
+              },
+              grain: {
+                '0%, 100%': { transform: 'translate(0, 0)' },
+                '10%': { transform: 'translate(-5%, -10%)' },
+                '20%': { transform: 'translate(-15%, 5%)' },
+                '30%': { transform: 'translate(7%, -25%)' },
+                '40%': { transform: 'translate(-5%, 25%)' },
+                '50%': { transform: 'translate(-15%, 10%)' },
+                '60%': { transform: 'translate(15%, 0%)' },
+                '70%': { transform: 'translate(0%, 15%)' },
+                '80%': { transform: 'translate(3%, 35%)' },
+                '90%': { transform: 'translate(-10%, 10%)' }
+              }
+            }
+          }
+        }
+      }
+    </script>
+    <style>
+      body {
+        background-color: #020617;
+        color: #e2e8f0;
+        overflow-x: hidden;
+      }
+      .scrollbar-hide::-webkit-scrollbar {
+          display: none;
+      }
+      .film-grain {
+        position: fixed;
+        top: -50%;
+        left: -50%;
+        width: 200%;
+        height: 200%;
+        background-image: url('data:image/svg+xml,%3Csvg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg"%3E%3Cfilter id="noiseFilter"%3E%3CfeTurbulence type="fractalNoise" baseFrequency="0.85" numOctaves="3" stitchTiles="stitch"/%3E%3C/filter%3E%3Crect width="100%25" height="100%25" filter="url(%23noiseFilter)" opacity="0.1"/%3E%3C/svg%3E');
+        animation: grain 8s steps(10) infinite;
+        pointer-events: none;
+        z-index: 40;
+        opacity: 0.5;
+      }
+      .vignette {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        box-shadow: 0 0 150px rgba(0,0,0,0.9) inset;
+        pointer-events: none;
+        z-index: 49;
+      }
+      .paper-texture {
+        background-color: #f3f4f6;
+        background-image: url("https://www.transparenttextures.com/patterns/notebook-dark.png");
+      }
+      .secret-stamp {
+        border: 4px solid #ef4444;
+        color: #ef4444;
+        padding: 0.5rem 1rem;
+        text-transform: uppercase;
+        font-weight: 900;
+        font-family: 'Orbitron', sans-serif;
+        display: inline-block;
+        transform: rotate(-10deg);
+        opacity: 0.8;
+        mix-blend-mode: multiply;
+      }
+    </style>
+  <script type="importmap">
+{
+  "imports": {
+    "react": "https://aistudiocdn.com/react@^19.2.0",
+    "react-dom/": "https://aistudiocdn.com/react-dom@^19.2.0/",
+    "react/": "https://aistudiocdn.com/react@^19.2.0/",
+    "lucide-react": "https://aistudiocdn.com/lucide-react@^0.555.0"
+  }
+}
+</script>
+</head>
+  <body>
+    <div id="root"></div>
+    <div class="film-grain"></div>
+    <div class="vignette"></div>
+  </body>
+</html>
